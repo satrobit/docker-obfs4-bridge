@@ -22,7 +22,7 @@
 version: "3.4"
 services:
   obfs4-bridge:
-    image: phwinter/obfs4-bridge:latest
+    image: thetorproject/obfs4-bridge:latest
     environment:
       # Exit with an error message if OR_PORT is unset or empty.
       - OR_PORT=${OR_PORT:?Env var OR_PORT is not set.}

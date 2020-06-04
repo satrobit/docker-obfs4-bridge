@@ -1,4 +1,4 @@
-IMAGE=phwinter/obfs4-bridge
+IMAGE=thetorproject/obfs4-bridge
 
 .PHONY: tag
 tag:
