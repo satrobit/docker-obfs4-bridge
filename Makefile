@@ -16,6 +16,16 @@ release:
 build:
 	docker build -t $(IMAGE) .
 
+.PHONY: crossbuild
+crossbuild:
+	@[ "${ARCH}" ] || ( echo "Env var ARCH is not set."; exit 1 )
+	docker buildx build -t $(IMAGE) --platform linux/$(ARCH) .
+
+.PHONY: crossbuild-and-release
+crossbuild-and-release:
+	@[ "${VERSION}" ] || ( echo "Env var VERSION is not set."; exit 1 )
+	docker buildx build -t $(IMAGE):latest -t $(IMAGE):$(VERSION) --platform linux/arm64,linux/amd64,linux/386 --push .
+
 .PHONY: deploy
 deploy:
 	docker-compose up -d obfs4-bridge
