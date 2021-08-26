@@ -33,6 +33,10 @@ Once we released a new image version, we tag the respective git commit:
 First, ensure that `buildx` is already installed, you can follow [this link for the documentations](https://docs.docker.com/buildx/working-with-buildx/).
 > The supported archs are amd64, arm64 and 386
 
+If you are using an amd64 machine, you need to install needed emulators if you want to build arm64 images:
+
+    docker run --privileged --rm tonistiigi/binfmt --install arm64
+
 Then, you can cross-build it by running
 
     make crossbuild ARCH=arch
@@ -43,7 +47,11 @@ Then, you can cross-build it by running
 
 First, ensure that `buildx` is already installed, you can follow [this link for the documentations](https://docs.docker.com/buildx/working-with-buildx/).
 
-If this is your first time cross-building using buildx, you need to create a new buildx builder instance:
+If you are using an amd64 machine, you need to install needed emulators if you want to build arm64 images:
+
+    docker run --privileged --rm tonistiigi/binfmt --install arm64
+
+If this is your first time cross-building multiple archs at the same time using buildx, you need to create a new buildx builder instance:
 
     docker buildx create --use --name builder
 
