@@ -14,7 +14,8 @@ release:
 
 .PHONY: build
 build:
-	docker build -t $(IMAGE) .
+	docker image pull debian:stable-slim
+	docker build -t $(IMAGE) . --no-cache
 
 .PHONY: deploy
 deploy:
