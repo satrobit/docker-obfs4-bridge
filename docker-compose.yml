@@ -39,6 +39,8 @@ services:
       - PT_PORT=${PT_PORT:?Env var PT_PORT is not set.}
       # Exit with an error message if EMAIL is unset or empty.
       - EMAIL=${EMAIL:?Env var EMAIL is not set.}
+      # Nickname with default value: "DockerObfs4Bridge"
+      - NICKNAME=${NICKNAME:-DockerObfs4Bridge}
     env_file:
       - .env
     volumes:
