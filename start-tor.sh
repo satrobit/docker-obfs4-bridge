@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 
-echo "Using NICKNAME=${NICKNAME}, OR_PORT=${OR_PORT}, PT_PORT=${PT_PORT}, and EMAIL=${EMAIL}."
+NICK=${NICKNAME:-DockerObfs4Bridge}
+
+echo "Using NICKNAME=${NICK}, OR_PORT=${OR_PORT}, PT_PORT=${PT_PORT}, and EMAIL=${EMAIL}."
 
 ADDITIONAL_VARIABLES_PREFIX="OBFS4V_"
 ADDITIONAL_VARIABLES=
@@ -25,7 +27,7 @@ RunAsDaemon 0
 # We don't need an open SOCKS port.
 SocksPort 0
 BridgeRelay 1
-Nickname ${NICKNAME}
+Nickname ${NICK}
 Log notice file /var/log/tor/log
 Log notice stdout
 ServerTransportPlugin obfs4 exec /usr/bin/obfs4proxy
