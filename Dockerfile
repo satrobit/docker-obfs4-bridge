@@ -22,8 +22,12 @@ RUN printf "deb https://deb.torproject.org/torproject.org bullseye main\n" >> /e
 RUN apt-get update && apt-get install -y \
     tor \
     tor-geoipdb \
-    obfs4proxy \
     --no-install-recommends
+
+RUN printf "deb http://deb.debian.org/debian bullseye-backports main\n" >> /etc/apt/sources.list.d/backports.list
+RUN apt-get update && apt-get install -y \
+    obfs4proxy \
+    --no-install-recommends -t bullseye-backports
 
 # Allow obfs4proxy to bind to ports < 1024.
 RUN setcap cap_net_bind_service=+ep /usr/bin/obfs4proxy
