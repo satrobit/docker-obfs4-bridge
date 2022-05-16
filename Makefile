@@ -25,7 +25,7 @@ crossbuild:
 .PHONY: crossbuild-and-release
 crossbuild-and-release:
 	@[ "${VERSION}" ] || ( echo "Env var VERSION is not set."; exit 1 )
-	docker buildx build -t $(IMAGE):$(VERSION) -t $(IMAGE):latest --platform linux/arm64,linux/amd64,linux/386 --push .
+	docker buildx build -t $(IMAGE):$(VERSION) -t $(IMAGE):latest --platform linux/arm64,linux/amd64,linux/386,linux/arm --push .
 
 .PHONY: deploy
 deploy:
